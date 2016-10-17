@@ -21,6 +21,7 @@ public class MeiZiItemAdapter extends BaseQuickAdapter<Meizi> {
         super(layoutResId, data);
     }
 
+
     @Override
     protected void convert(BaseViewHolder baseViewHolder, Meizi meizi) {
         ImageView imageView = baseViewHolder.getView(R.id.girl_item_iv);

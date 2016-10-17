@@ -15,7 +15,7 @@ import java.util.List;
 
 import butterknife.InjectView;
 import cn.uudu.com.mymvp.R;
-import cn.uudu.com.mymvp.api.Urls;
+import cn.uudu.com.mymvp.http.Urls;
 import cn.uudu.com.mymvp.bean.ZhiHu;
 import cn.uudu.com.mymvp.bean.ZhiHuData;
 import cn.uudu.com.mymvp.mvp.news.ZhihuContract;
@@ -47,6 +47,13 @@ public class ZhiHuFragment extends BaseFragment implements BaseQuickAdapter.Requ
     protected void initView() {
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark);
         mSwipeRefreshLayout.setOnRefreshListener(this);
+        //实现首次自动显示加载提示
+//        mSwipeRefreshLayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                mSwipeRefreshLayout.setRefreshing(true);
+//            }
+//        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -89,7 +96,6 @@ public class ZhiHuFragment extends BaseFragment implements BaseQuickAdapter.Requ
 
     @Override
     public void showErrorMsg(String msg) {
-        adapter.showLoadMoreFailedView();
         ToastUtils.showToast(getActivity(), msg);
     }
 
@@ -141,6 +147,5 @@ public class ZhiHuFragment extends BaseFragment implements BaseQuickAdapter.Requ
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        zhihuPresenter.unsubcrible();
     }
 }

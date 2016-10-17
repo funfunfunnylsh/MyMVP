@@ -8,7 +8,8 @@ import java.util.ArrayList;
  */
 public class ZhiHuData extends BaseData{
     public String date;
-    public ArrayList<ZhiHuTop> topstories;
+    public ArrayList<ZhiHuTop> top_stories;
     public ArrayList<ZhiHu> stories;
+
 
 }

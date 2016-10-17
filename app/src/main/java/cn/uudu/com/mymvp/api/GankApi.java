@@ -2,8 +2,8 @@ package cn.uudu.com.mymvp.api;
 
 
 import cn.uudu.com.mymvp.bean.MeiziData;
-import retrofit.http.GET;
-import retrofit.http.Path;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -11,7 +11,7 @@ import rx.Observable;
  */
 public interface GankApi {
 
-    @GET("/api/data/福利/10/{page}")
+    @GET("api/data/福利/10/{page}")
     Observable<MeiziData> getMeizhiData(@Path("page") int page);
 
 }

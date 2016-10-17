@@ -3,14 +3,13 @@ package cn.uudu.com.mymvp.mvp.news;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
-import cn.uudu.com.mymvp.api.Urls;
 import cn.uudu.com.mymvp.api.ZhiHuApi;
 import cn.uudu.com.mymvp.bean.ZhiHuData;
 import cn.uudu.com.mymvp.http.OnHttpCallBack;
 import cn.uudu.com.mymvp.http.RetrofitUtils;
-import retrofit.HttpException;
+import cn.uudu.com.mymvp.http.Urls;
+import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -21,10 +20,10 @@ public class ZhihuModel implements ZhihuContract.IZhihuModel{
 
 
     @Override
-    public Subscription getZhihuData(final OnHttpCallBack<ZhiHuData> callBack) {
-        return RetrofitUtils.newInstence(Urls.ZHIHU_URL)
+    public void getZhihuData(final OnHttpCallBack<ZhiHuData> callBack) {
+        RetrofitUtils.newInstence(Urls.ZHIHU_URL)
                 .create(ZhiHuApi.class)
-                .getLastDaily()
+                .getLastestNews()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<ZhiHuData>() {
@@ -58,11 +57,29 @@ public class ZhihuModel implements ZhihuContract.IZhihuModel{
                         callBack.onSuccessful(zhiHuData);
                     }
                 });
+
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(Urls.ZHIHU_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        Call<ZhiHuData> call = retrofit.create(ZhiHuService.class).getLastestNews();
+//        call.enqueue(new Callback<ZhiHuData>() {
+//            @Override
+//            public void onResponse(Call<ZhiHuData> call, Response<ZhiHuData> response) {
+//                ZhiHuData zhiHuData = response.body();
+//                callBack.onSuccessful(zhiHuData);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ZhiHuData> call, Throwable t) {
+//
+//            }
+//        });
     }
 
     @Override
-    public Subscription getMoreZhihuData(String data, final OnHttpCallBack<ZhiHuData> callBack) {
-        return RetrofitUtils.newInstence(Urls.ZHIHU_URL)
+    public void getMoreZhihuData(String data, final OnHttpCallBack<ZhiHuData> callBack) {
+        RetrofitUtils.newInstence(Urls.ZHIHU_URL)
                 .create(ZhiHuApi.class)
                 .getTheDaily(data)
                 .observeOn(AndroidSchedulers.mainThread())

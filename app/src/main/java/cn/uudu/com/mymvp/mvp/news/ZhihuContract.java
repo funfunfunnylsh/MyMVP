@@ -2,7 +2,6 @@ package cn.uudu.com.mymvp.mvp.news;
 
 import cn.uudu.com.mymvp.bean.ZhiHuData;
 import cn.uudu.com.mymvp.http.OnHttpCallBack;
-import rx.Subscription;
 
 /**
  * Created by Administrator on 2016/10/9.
@@ -32,9 +31,9 @@ public class ZhihuContract {
      * 逻辑处理层
      */
     public interface IZhihuModel {
-        Subscription getZhihuData(OnHttpCallBack<ZhiHuData> callBack);
+        void getZhihuData(OnHttpCallBack<ZhiHuData> callBack);
 
-        Subscription getMoreZhihuData(String data,OnHttpCallBack<ZhiHuData> callBack);
+        void getMoreZhihuData(String data,OnHttpCallBack<ZhiHuData> callBack);
     }
 
 }

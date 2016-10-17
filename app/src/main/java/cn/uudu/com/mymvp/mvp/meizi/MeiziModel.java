@@ -4,11 +4,11 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
 import cn.uudu.com.mymvp.api.GankApi;
-import cn.uudu.com.mymvp.api.Urls;
+import cn.uudu.com.mymvp.http.Urls;
 import cn.uudu.com.mymvp.bean.MeiziData;
 import cn.uudu.com.mymvp.http.OnHttpCallBack;
 import cn.uudu.com.mymvp.http.RetrofitUtils;
-import retrofit.HttpException;
+import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

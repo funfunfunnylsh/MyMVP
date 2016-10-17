@@ -20,7 +20,6 @@ public class MeiziContract {
 
         void showData( MeiziData meiziData);//显示数据到View上
 
-        void showMoreData( MeiziData meiziData);//显示数据到View上
     }
     /**
      * P视图与逻辑处理的连接层

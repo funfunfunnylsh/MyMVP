@@ -37,15 +37,16 @@ public class MeiZhiFragment extends BaseFragment implements BaseQuickAdapter.Req
     RecyclerView mRecycleMeizi;
     @InjectView(R.id.type_item_swipfreshlayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
-    @InjectView(R.id.prograss)
+    @InjectView(R.id.prograssbar)
     ProgressBar pbProgress;
 
 
     private MeiziPresenter meiziPresenter;
     private List<Meizi> mDatas;
     private MeiZiItemAdapter adapter;
-    private int page = 0;//从第几开始
+    private int page = 1;//从第几开始
     private boolean isLoadMore=false;
+    private boolean isFirst=true;
 
     @Override
     protected int initLayoutId() {
@@ -97,6 +98,7 @@ public class MeiZhiFragment extends BaseFragment implements BaseQuickAdapter.Req
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                isLoadMore = false;
                 meiziPresenter.getData(1);
             }
         }, 1000);
@@ -124,10 +126,8 @@ public class MeiZhiFragment extends BaseFragment implements BaseQuickAdapter.Req
 
     @Override
     public void showData(MeiziData meiziData) {
-
+        isFirst = false;
         mSwipeRefreshLayout.setRefreshing(false);
-//        mDatas.clear();
-//        mDatas.addAll(meiziData.results);
         if(isLoadMore){
             adapter.addData(meiziData.results);
         }else{
@@ -138,23 +138,16 @@ public class MeiZhiFragment extends BaseFragment implements BaseQuickAdapter.Req
     }
 
     @Override
-    public void showMoreData(MeiziData meiziData) {
-
-//        mDatas.addAll(meiziData.results);
-        adapter.addData(meiziData.results);
-    }
-
-
-    @Override
     public void onLoadMoreRequested() {
         mRecycleMeizi.post(new Runnable() {
             @Override
             public void run() {
-                if(isLoadMore){
+                if(!isFirst){
                     meiziPresenter.getData(++page);
                     //无更多数据时可以添加footerview   Adapter.addFooterView(notLoadingView);
                     isLoadMore = true;
                 }
+
 
             }
         });

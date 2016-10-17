@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import cn.uudu.com.mymvp.R;
+import cn.uudu.com.mymvp.ui.fragment.GirlFragment;
 import cn.uudu.com.mymvp.ui.fragment.MeiZhiFragment;
 import cn.uudu.com.mymvp.ui.fragment.ZhiHuFragment;
 import cn.uudu.com.mymvp.utils.SnackBarUtil;
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity {
     Fragment currentFragment;
     SimpleArrayMap<Integer, String> mTitleArryMap = new SimpleArrayMap<>();
     private MeiZhiFragment meizifragment;
-    private Fragment otherfragment;
+    public GirlFragment girlfragment;
     private ZhiHuFragment zhihufragment;
 
     @Override
@@ -84,7 +85,7 @@ public class MainActivity extends BaseActivity {
 
         mTitleArryMap.put(0, "meizhi");
         mTitleArryMap.put(1, "zhihu");
-        mTitleArryMap.put(2, "wangyi");
+        mTitleArryMap.put(2, "girls");
 
         if (currentMenuItem==null){
             currentMenuItem = mNavigationView.getMenu().findItem(R.id.menu_info_details);
@@ -94,6 +95,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private NavigationView.OnNavigationItemSelectedListener naviListener = new NavigationView.OnNavigationItemSelectedListener() {
+
         public Fragment fragment;
 
         @Override
@@ -112,7 +114,11 @@ public class MainActivity extends BaseActivity {
                     mToolbar.setTitle("zhihu");
                     break;
                 case R.id.menu_agenda:
-                    fragment = new Fragment();
+                    if(null == girlfragment){
+                        girlfragment = new GirlFragment();
+                    }
+                    fragment = girlfragment;
+                    mToolbar.setTitle("girls");
                     break;
             }
 

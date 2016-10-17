@@ -11,7 +11,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.List;
 
 import cn.uudu.com.mymvp.R;
-import cn.uudu.com.mymvp.api.Urls;
+import cn.uudu.com.mymvp.http.Urls;
 import cn.uudu.com.mymvp.bean.ZhiHu;
 import cn.uudu.com.mymvp.utils.ImageLoader;
 
