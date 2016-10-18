@@ -46,7 +46,6 @@ public class MeiZhiFragment extends BaseFragment implements BaseQuickAdapter.Req
     private MeiZiItemAdapter adapter;
     private int page = 1;//从第几开始
     private boolean isLoadMore=false;
-    private boolean isFirst=true;
 
     @Override
     protected int initLayoutId() {
@@ -64,6 +63,7 @@ public class MeiZhiFragment extends BaseFragment implements BaseQuickAdapter.Req
 
         adapter = new MeiZiItemAdapter(R.layout.item_girl_layout, new ArrayList<Meizi>());
         adapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+        adapter.openLoadMore(10);
         adapter.setOnLoadMoreListener(this);
         mRecycleMeizi.setAdapter(adapter);
         adapter.setLoadingView(LayoutInflater.from(getActivity()).inflate(R.layout.load_loading_layout, (ViewGroup) mRecycleMeizi.getParent(), false));
@@ -126,7 +126,6 @@ public class MeiZhiFragment extends BaseFragment implements BaseQuickAdapter.Req
 
     @Override
     public void showData(MeiziData meiziData) {
-        isFirst = false;
         mSwipeRefreshLayout.setRefreshing(false);
         if(isLoadMore){
             adapter.addData(meiziData.results);
@@ -142,13 +141,9 @@ public class MeiZhiFragment extends BaseFragment implements BaseQuickAdapter.Req
         mRecycleMeizi.post(new Runnable() {
             @Override
             public void run() {
-                if(!isFirst){
-                    meiziPresenter.getData(++page);
-                    //无更多数据时可以添加footerview   Adapter.addFooterView(notLoadingView);
-                    isLoadMore = true;
-                }
-
-
+                meiziPresenter.getData(++page);
+                //无更多数据时可以添加footerview   Adapter.addFooterView(notLoadingView);
+                isLoadMore = true;
             }
         });
 
