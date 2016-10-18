@@ -48,12 +48,12 @@ public class ZhiHuFragment extends BaseFragment implements BaseQuickAdapter.Requ
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         //实现首次自动显示加载提示
-//        mSwipeRefreshLayout.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                mSwipeRefreshLayout.setRefreshing(true);
-//            }
-//        });
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(true);
+            }
+        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -62,6 +62,7 @@ public class ZhiHuFragment extends BaseFragment implements BaseQuickAdapter.Requ
 
         adapter = new ZhihuItemAdapter(R.layout.item_news_layout,mDatas);
         adapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
+        adapter.openLoadMore(10);
         adapter.setOnLoadMoreListener(this);
         mRecycleNews.setAdapter(adapter);
         adapter.setLoadingView(LayoutInflater.from(getActivity()).inflate(R.layout.load_loading_layout,mRecycleNews, false));

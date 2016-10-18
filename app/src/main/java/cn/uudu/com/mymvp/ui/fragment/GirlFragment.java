@@ -61,6 +61,7 @@ public class GirlFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
         adapter = new GirlsItemAdapter(R.layout.item_girl_layout, new ArrayList<GirlItemData>());
         adapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+        adapter.openLoadMore(10);
         adapter.setOnLoadMoreListener(this);
         mRecyclerView.setAdapter(adapter);
         adapter.setLoadingView(LayoutInflater.from(getActivity()).inflate(R.layout.load_loading_layout, (ViewGroup) mRecyclerView.getParent(), false));
