@@ -10,6 +10,12 @@
     </style>
 
 
+    <!--全屏-->
+    <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
     <style name="BaseStyle" parent="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

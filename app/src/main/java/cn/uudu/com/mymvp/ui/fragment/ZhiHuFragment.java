@@ -1,5 +1,6 @@
 package cn.uudu.com.mymvp.ui.fragment;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,7 @@ import cn.uudu.com.mymvp.bean.ZhiHu;
 import cn.uudu.com.mymvp.bean.ZhiHuData;
 import cn.uudu.com.mymvp.mvp.news.ZhihuContract;
 import cn.uudu.com.mymvp.mvp.news.ZhihuPresenter;
+import cn.uudu.com.mymvp.ui.activity.ZhiHuDetailActivity;
 import cn.uudu.com.mymvp.ui.adapter.ZhihuItemAdapter;
 import cn.uudu.com.mymvp.utils.ToastUtils;
 
@@ -70,7 +72,7 @@ public class ZhiHuFragment extends BaseFragment implements BaseQuickAdapter.Requ
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
                 ToastUtils.showToast(getActivity(),Integer.toString(position));
-
+                startActivity(new Intent(getActivity(), ZhiHuDetailActivity.class));
 
             }
         });
