@@ -35,6 +35,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".ui.activity.ZhiHuDetailActivity"
+            android:theme="@style/Theme.DesignDemo"
             android:screenOrientation="portrait">
         </activity>
 
