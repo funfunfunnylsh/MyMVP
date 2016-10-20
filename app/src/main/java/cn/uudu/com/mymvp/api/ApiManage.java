@@ -11,9 +11,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 
-/**
- * Created by xinghongfei on 16/8/12.
- */
+
 public class ApiManage {
 
     public static ApiManage apiManage;
