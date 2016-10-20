@@ -1,9 +1,6 @@
 <resources>>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="AppThemeBase">
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
@@ -14,6 +11,11 @@
     <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+
+    <style name="ViewerTheme" parent="ViewerThemeBase">
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="BaseStyle" parent="AppTheme.NoActionBar">
