@@ -2,6 +2,7 @@ package cn.uudu.com.mymvp.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
 
 import butterknife.InjectView;
 import cn.uudu.com.mymvp.R;
@@ -27,6 +28,7 @@ public class MeiZhiDetailFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        ViewCompat.setTransitionName(mImageView, "shareView");
         ImageLoader.load(getActivity(), mUrl, mImageView);
         PhotoViewAttacher attacher = new PhotoViewAttacher(mImageView);
         attacher.update();
@@ -57,4 +59,5 @@ public class MeiZhiDetailFragment extends BaseFragment {
         fragment.setArguments(arguments);
         return fragment;
     }
+
 }

@@ -31,6 +31,7 @@ public class MeiZhiDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_girl_detail);
 
         mDatas = (ArrayList<Meizi>) getIntent().getSerializableExtra("meizi_data");
@@ -39,6 +40,8 @@ public class MeiZhiDetailActivity extends BaseActivity {
         //初始化控件及布局
         initToolbar();
         initView();
+
+
     }
 
     private void initToolbar() {
@@ -68,7 +71,7 @@ public class MeiZhiDetailActivity extends BaseActivity {
         for (Meizi meizi : mDatas) {
             fragments.add(MeiZhiDetailFragment.newInstance(meizi.url));
         }
-        MeizhiDetailAdapter adapter = new MeizhiDetailAdapter(getSupportFragmentManager());
+        final MeizhiDetailAdapter adapter = new MeizhiDetailAdapter(getSupportFragmentManager());
         adapter.setData(fragments);
         mViewPager.setOffscreenPageLimit(mDatas.size());
         mViewPager.setAdapter(adapter);
@@ -92,6 +95,7 @@ public class MeiZhiDetailActivity extends BaseActivity {
 
             }
         });
+
     }
 
     /**

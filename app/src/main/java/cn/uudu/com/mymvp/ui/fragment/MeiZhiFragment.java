@@ -75,8 +75,10 @@ public class MeiZhiFragment extends BaseFragment implements BaseQuickAdapter.Req
                 intent.putExtra("meizi_data", (ArrayList) adapter.getData());
                 intent.putExtra("position", position);
                 ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-                        view, "shareView");
+                        view.findViewById(R.id.girl_item_iv), "shareView");
                 ActivityCompat.startActivity(getActivity(), intent, optionsCompat.toBundle());
+
+//                getActivity().startActivity(intent,optionsCompat.toBundle());
 
             }
         });
