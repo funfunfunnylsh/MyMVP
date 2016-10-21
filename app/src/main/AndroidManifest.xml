@@ -31,10 +31,10 @@
         </activity>
 
         <activity android:name=".ui.activity.MeiZhiDetailActivity"
-            android:theme="@style/Transparent"
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".ui.activity.ZhiHuDetailActivity"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.DesignDemo"
             android:screenOrientation="portrait">
         </activity>
