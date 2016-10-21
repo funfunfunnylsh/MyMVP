@@ -72,7 +72,10 @@ public class ZhiHuFragment extends BaseFragment implements BaseQuickAdapter.Requ
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
                 ToastUtils.showToast(getActivity(),Integer.toString(position));
-                startActivity(new Intent(getActivity(), ZhiHuDetailActivity.class));
+                Intent intent = new Intent(getActivity(), ZhiHuDetailActivity.class);
+                intent.putExtra("entity",adapter.getData().get(position));
+                startActivity(intent);
+
 
             }
         });
