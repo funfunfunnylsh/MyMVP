@@ -2,6 +2,8 @@ package cn.uudu.com.mymvp.ui.fragment;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,9 +18,9 @@ import java.util.List;
 
 import butterknife.InjectView;
 import cn.uudu.com.mymvp.R;
-import cn.uudu.com.mymvp.http.Urls;
 import cn.uudu.com.mymvp.bean.ZhiHu;
 import cn.uudu.com.mymvp.bean.ZhiHuData;
+import cn.uudu.com.mymvp.http.Urls;
 import cn.uudu.com.mymvp.mvp.news.ZhihuContract;
 import cn.uudu.com.mymvp.mvp.news.ZhihuPresenter;
 import cn.uudu.com.mymvp.ui.activity.ZhiHuDetailActivity;
@@ -64,17 +66,26 @@ public class ZhiHuFragment extends BaseFragment implements BaseQuickAdapter.Requ
 
         adapter = new ZhihuItemAdapter(R.layout.item_news_layout,mDatas);
         adapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
-        adapter.openLoadMore(10);
+        adapter.openLoadMore(5);
         adapter.setOnLoadMoreListener(this);
         mRecycleNews.setAdapter(adapter);
         adapter.setLoadingView(LayoutInflater.from(getActivity()).inflate(R.layout.load_loading_layout,mRecycleNews, false));
         mRecycleNews.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
-                ToastUtils.showToast(getActivity(),Integer.toString(position));
+                ToastUtils.showToast(getActivity(), Integer.toString(position));
                 Intent intent = new Intent(getActivity(), ZhiHuDetailActivity.class);
-                intent.putExtra("entity",adapter.getData().get(position));
-                startActivity(intent);
+                intent.putExtra("entity", adapter.getData().get(position));
+//                startActivity(intent);
+                ActivityOptionsCompat options = ActivityOptionsCompat
+                        .makeSceneTransitionAnimation(getActivity(), view.findViewById(R.id.iv_title), "transitionimg");
+
+//                final android.support.v4.util.Pair<View, String>[] pairs = Help.createSafeTransitionParticipants
+//                        (getActivity(), false, new android.support.v4.util.Pair<>(view.findViewById(R.id.iv_title), "transitionimg"),
+//                                new android.support.v4.util.Pair<>(view.findViewById(R.id.boom), "transitionlin"));
+//                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), pairs);
+
+                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
 
 
             }

@@ -3,6 +3,7 @@ package cn.uudu.com.mymvp.ui.activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -47,7 +48,7 @@ public class ZhiHuDetailActivity extends BaseActivity{
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                finishAfterTransition();
             }
         });
 
@@ -60,8 +61,10 @@ public class ZhiHuDetailActivity extends BaseActivity{
         collapsingToolbar.setExpandedTitleColor(Color.WHITE);//设置还没收缩时状态下字体颜色
         collapsingToolbar.setCollapsedTitleTextColor(Color.GREEN);//设置收缩后Toolbar上字体的颜色
 
-        back_drop = (ImageView) findViewById(R.id.back_drop);
 
+        back_drop = (ImageView) findViewById(R.id.back_drop);
+        //设置过渡动画
+        ViewCompat.setTransitionName(back_drop, "transitionimg");
 
         entity = (ZhiHu) getIntent().getSerializableExtra("entity");
 
