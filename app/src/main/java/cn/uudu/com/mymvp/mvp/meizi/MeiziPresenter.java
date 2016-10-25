@@ -2,11 +2,12 @@ package cn.uudu.com.mymvp.mvp.meizi;
 
 import cn.uudu.com.mymvp.bean.MeiziData;
 import cn.uudu.com.mymvp.http.OnHttpCallBack;
+import cn.uudu.com.mymvp.mvp.BasePresenter;
 
 /**
  * Created by Administrator on 2016/10/9.
  */
-public class MeiziPresenter implements MeiziContract.IMeziPresenter{
+public class MeiziPresenter extends BasePresenter implements MeiziContract.IMeziPresenter{
 
     private MeiziContract.IMeiziView iMeiziView;
     private MeiziModel meiziModel;
